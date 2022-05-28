@@ -37,7 +37,7 @@ routerProductos.put('/api/productos/:id', (req, res) => {
   const {title, price, thumbnail} = req.body;
   const { id } = req.params;
   if (productos.find(element => element.id === parseInt(id))) {
-    productos[parseInt(id)] = { 'id': parseInt(id), title, price, thumbnail};
+    productos[id - 1] = { 'id': parseInt(id), title, price, thumbnail};
     res.json(productos);
   } else {
     res.json({msj: `No existe el producto con ID: ${id}`});  
