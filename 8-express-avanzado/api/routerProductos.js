@@ -42,12 +42,6 @@ routerProductos.put('/api/productos/:id', (req, res) => {
   exists 
   ? [productos[prodIndex] = edited, res.json(productos)] 
   : res.json({msj: `No existe el producto con ID: ${id}`});  
-  // if(exists) {
-  //   productos[prodIndex] = edited;
-  //   res.json(productos);
-  // } else {
-  //   res.json({msj: `No existe el producto con ID: ${id}`});  
-  // }  
 });
 
 routerProductos.post('/api/productos', async (req, res) => {
