@@ -36,12 +36,18 @@ routerProductos.get('/api/productos/:id', (req, res) => {
 routerProductos.put('/api/productos/:id', (req, res) => {
   const {title, price, thumbnail} = req.body;
   const { id } = req.params;
-  if (productos.find(element => element.id === parseInt(id))) {
-    productos[id - 1] = { 'id': parseInt(id), title, price, thumbnail};
-    res.json(productos);
-  } else {
-    res.json({msj: `No existe el producto con ID: ${id}`});  
-  }
+  const exists = productos.find(element => element.id === parseInt(id));
+  const edited = { 'id': parseInt(id), title, price, thumbnail}
+  const prodIndex = productos.findIndex(p => p.id === parseInt(id));
+  exists 
+  ? [productos[prodIndex] = edited, res.json(productos)] 
+  : res.json({msj: `No existe el producto con ID: ${id}`});  
+  // if(exists) {
+  //   productos[prodIndex] = edited;
+  //   res.json(productos);
+  // } else {
+  //   res.json({msj: `No existe el producto con ID: ${id}`});  
+  // }  
 });
 
 routerProductos.post('/api/productos', async (req, res) => {
